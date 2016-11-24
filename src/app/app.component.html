@@ -1,3 +1,68 @@
-<h1>
-  {{title}}
-</h1>
+<!--
+<h1>hello GRSU</h1>
+
+<div class="output_field">
+    <div class="teachers_list">
+        <li class="teacher_item" *ngFor="let teacher of teachers" (click)="onSelectTeacher(teacher)">
+            {{teacher.fullname}}
+        </li>
+    </div>
+</div>
+<button (click)="getTeacherschedule(selectedTeacher.id)">apply</button>
+<div class="rasp">
+    <div class="less" *ngFor="let sc of TeacherSchedule">
+        <li>{{sc.num}}</li>
+        <li>{{sc.date}}</li>
+        <ul *ngFor="let scLessons of sc.lessons">
+            <li>{{scLessons.timeStart}}</li>
+            <li>{{scLessons.title}}</li>
+        </ul>
+        &lt;!&ndash;  <li>{{scLessons.title}}</li>&ndash;&gt;
+        <li>{{selectedTeacher.fullname}}</li>
+    </div>
+</div>-->
+
+<!--<script>
+    $('#filter').keyup(function () {
+
+        var rex = new RegExp('.*(' + $(this).val()+')+.*', 'i');
+        $('.teachers_list__item li').hide();
+        $('.teachers_list__item li').filter(function () {
+            return rex.test($(this).text().replace(/[^\wа-яё]+/gi, ""));
+        }).show();
+
+    })
+</script>-->
+
+<h1 class="title">{{title}}</h1>
+
+<div class="main">
+
+  <div class="ui fluid search selection dropdown">
+    <input type="hidden" name="country">
+    <i class="dropdown icon"></i>
+    <div class="default text">Select Country</div>
+    <div class="menu">
+      <li *ngFor="let teacher of teachers" class="item">{{teacher.name}}</li>
+    </div>
+
+    <!--input с keyup-->
+    <input #teacherSearchBox id="teacher-search-box" (keyup)="search(teacherSearchBox.value)"/>
+
+    <div class="teachers_list">
+      <li class="teachers_list__item" *ngFor="let teacher of teachers"
+          (click)="getTeacherschedule(teacher.id) ">{{teacher.surname}}
+        {{teacher.name}} {{teacher.patronym}}
+      </li>
+    </div>
+
+    <div class="teacher_schedule">
+      <div class="teacher_schedule__day" *ngFor="let day of TeacherSchedule">
+        <li>{{day.date}}</li>
+        <div class="teacher_schedule__day__lessons" *ngFor="let lesson of day.lessons">
+          <span class="lesson__title">{{lesson.title}}</span> in <span class="lesson__time_start">{{lesson.timeStart}}</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
